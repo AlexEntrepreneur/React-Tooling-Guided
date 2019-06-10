@@ -34,7 +34,7 @@ class App extends Component {
           clearCurrentPokemon={this.clearCurrentPokemon}
         />
         <Pokemon 
-         
+          pokemon={this.state.pokemon}
           getCurrentPokemon={this.getCurrentPokemon}
         />
       </div>

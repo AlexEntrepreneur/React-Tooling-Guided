@@ -48,7 +48,8 @@ Pokemon.propTypes = {
         ])
       )
     }).isRequired
-  )
+  ),
+  getCurrentPokemon: PropTypes.func.isRequired
 }
 
 Pokemon.defaultProps = {
