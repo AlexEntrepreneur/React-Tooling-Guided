@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function PokemonDetail(props) {
   
@@ -34,6 +35,35 @@ function PokemonDetail(props) {
     }
     </>
   );
+}
+
+PokemonDetail.propTypes = {
+  current: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    weight: PropTypes.string.isRequired,
+    height: PropTypes.string.isRequired,
+    img: PropTypes.string.isRequired,
+    type: PropTypes.arrayOf(
+      PropTypes.oneOf([
+        'Grass',
+        'Poison',
+        'Fire',
+        'Flying',
+        'Water',
+        'Bug',
+        'Normal',
+        'Electric',
+        'Psychic',
+        'Ground',
+        'Fighting',
+        'Rock',
+        'Ice',
+        'Ghost',
+        'Dragon'
+      ])
+    )
+  }),
+  clearCurrentPokemon: PropTypes.func.isRequired
 }
 
 export default PokemonDetail;
