@@ -7,7 +7,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      pokemon: [],
+      pokemon: data,
       currentPokemon: null
     };
   }
