@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Pokemon(props) {
   return (
@@ -19,6 +20,39 @@ function Pokemon(props) {
       }
     </>
   );
+}
+
+Pokemon.propTypes = {
+  pokemon: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      img: PropTypes.string.isRequired,
+      type: PropTypes.arrayOf(
+        PropTypes.oneOf([
+          'Grass',
+          'Poison',
+          'Fire',
+          'Flying',
+          'Water',
+          'Bug',
+          'Normal',
+          'Electric',
+          'Psychic',
+          'Ground',
+          'Fighting',
+          'Rock',
+          'Ice',
+          'Ghost',
+          'Dragon'
+        ])
+      )
+    }).isRequired
+  )
+}
+
+Pokemon.defaultProps = {
+  pokemon: []
 }
 
 export default Pokemon;
