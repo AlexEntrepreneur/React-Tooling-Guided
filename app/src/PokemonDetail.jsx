@@ -1,40 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function PokemonDetail(props) {
+class PokemonDetail extends React.Component {
   
-  const onOverlayClick = (event) => {
+  onOverlayClick = (event) => {
     if (event.target.className === 'overlay') {
-      clearCurrentPokemon();
+      this.props.clearCurrentPokemon();
     }
   }
 
-  const { current: pokemon, clearCurrentPokemon } = props;
+  componentWillUnmount() {
+    // remove event listeners here
+    // cancel network requests here
+    // Stopping device API access (e.g. laptop camera)
+    console.log('Detail Component Unmounting...');
+  }
 
-  return (
-    <>
-    {
-      props.current &&
-      (
-        <div className="overlay" onClick={onOverlayClick}>
-          <div className="modal">
-            <div>
-              <img src={pokemon.img} alt={pokemon.name} />
-              <h2>{pokemon.name}</h2>
-              <p><b>Type:</b> { pokemon.type.map(el => `${el} `) }</p>
-              <p><b>Height:</b> { pokemon.height }</p>
-              <p><b>Weight:</b> { pokemon.weight }</p>
-              {
-                pokemon.next_evolution &&
-                <p><b>Evolve To:</b> {pokemon.next_evolution.map(el => `${el.name} `)}</p>
-              }
+  render() {
+    const { current: pokemon } = this.props;
+  
+    return (
+      <>
+      {
+        // this.props.current &&
+        (
+          <div className="overlay" onClick={this.onOverlayClick}>
+            <div className="modal">
+              <div>
+                <img src={pokemon.img} alt={pokemon.name} />
+                <h2>{pokemon.name}</h2>
+                <p><b>Type:</b> { pokemon.type.map(el => `${el} `) }</p>
+                <p><b>Height:</b> { pokemon.height }</p>
+                <p><b>Weight:</b> { pokemon.weight }</p>
+                {
+                  pokemon.next_evolution &&
+                  <p><b>Evolve To:</b> {pokemon.next_evolution.map(el => `${el.name} `)}</p>
+                }
+              </div>
             </div>
           </div>
-        </div>
-      )
-    }
-    </>
-  );
+        )
+      }
+      </>
+    );
+  }
 }
 
 PokemonDetail.propTypes = {

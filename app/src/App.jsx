@@ -30,7 +30,7 @@ class App extends Component {
 
 
     // fixing the infinte loop!
-    if (prevState.test === this.state.test) {
+    if (prevState.test !== this.state.test) {
       console.log('CDU: updating the state...');
       this.setState({ test: 'something' });
     }
@@ -54,10 +54,13 @@ class App extends Component {
     console.log('rendering...');
     return (
       <div className="App">
-        <PokemonDetail 
-          current={this.state.currentPokemon}
-          clearCurrentPokemon={this.clearCurrentPokemon}
-        />
+        {
+          this.state.currentPokemon &&
+          <PokemonDetail 
+            current={this.state.currentPokemon}
+            clearCurrentPokemon={this.clearCurrentPokemon}
+          />
+        }
         <Pokemon 
           pokemon={this.state.pokemon}
           getCurrentPokemon={this.getCurrentPokemon}
