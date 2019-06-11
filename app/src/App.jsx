@@ -9,7 +9,8 @@ class App extends Component {
     super();
     this.state = {
       pokemon: [],
-      currentPokemon: null
+      currentPokemon: null,
+      test: ''
     };
   }
 
@@ -21,7 +22,13 @@ class App extends Component {
     setTimeout(() => {
       this.setState({ pokemon: data });
     }, 1000);
-    
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('Component Updated!');
+    console.log(prevState.pokemon, this.state.pokemon);
+
+    this.setState({ test: 'something' });
   }
 
   getCurrentPokemon = id => {
