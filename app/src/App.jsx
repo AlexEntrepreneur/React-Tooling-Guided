@@ -5,11 +5,23 @@ import PokemonDetail from './PokemonDetail';
 
 class App extends Component {
   constructor() {
+    console.log('Constructing...');
     super();
     this.state = {
-      pokemon: data,
+      pokemon: [],
       currentPokemon: null
     };
+  }
+
+  componentDidMount() {
+    console.log('Component Mounted!');
+
+    // fetch the data first here
+    // set the data to state
+    setTimeout(() => {
+      this.setState({ pokemon: data });
+    }, 1000);
+    
   }
 
   getCurrentPokemon = id => {
@@ -27,6 +39,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('rendering...');
     return (
       <div className="App">
         <PokemonDetail 
