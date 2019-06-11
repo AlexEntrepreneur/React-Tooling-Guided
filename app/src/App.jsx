@@ -26,9 +26,14 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     console.log('Component Updated!');
-    console.log(prevState.pokemon, this.state.pokemon);
+    // console.log(prevState.pokemon, this.state.pokemon);
 
-    this.setState({ test: 'something' });
+
+    // fixing the infinte loop!
+    if (prevState.test === this.state.test) {
+      console.log('CDU: updating the state...');
+      this.setState({ test: 'something' });
+    }
   }
 
   getCurrentPokemon = id => {
